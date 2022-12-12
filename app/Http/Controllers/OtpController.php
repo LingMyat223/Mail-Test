@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OtpSend;
 use App\Mail\Register;
 use App\Models\Otp;
 use Illuminate\Support\Str;
@@ -14,12 +15,14 @@ class OtpController extends Controller
     public function sendOtp(Request $request){
 
         $code = rand(10000,99999);
-        Otp::create([
+        $otp = Otp::create([
             'email'=>$request->email,
             'code'=>$code
         ]);
-        Mail::to($request->email)->send(new Register($code));
-        return to_route('page@verifyOtpPage',$request->email);
+        // Mail::to($otpRow->email)->send(new Register($otpRow->code));
+        Mail::to($otp->email)->send(new OtpSend($otp));
+        // return to_route('page@verifyOtpPage',$otpRow->id);
+        return view('codeVerify',compact('otp'));
     }
 
     //verifyOtp

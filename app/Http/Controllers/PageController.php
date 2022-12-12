@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Otp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -20,8 +21,9 @@ class PageController extends Controller
         return View::make('sentCode');
     }
     //verifyOtpPage
-    public function verifyOtpPage(){
-        return view('codeVerify');
+    public function verifyOtpPage(Otp $id){
+        // $otp = Otp::findOrFail($id);
+        return view('codeVerify',['otp'=>$id]);
     }
     //home
     public function home(){

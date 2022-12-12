@@ -9,7 +9,7 @@
 <body>
     <form action="{{ route('otp@verify') }}" method="post">
         @csrf
-        <input type="hidden" name="email" value="{{ request('email') }}">
+        <input type="hidden" name="email" value="{{ $otp->email }}">
         <input type="number" placeholder="Enter your verification code" name="code">
         @if (session('error'))
             <span class="text-danger">{{ session('error') }}</span>
