@@ -8,7 +8,8 @@
 </head>
 <body>
     <h4>this is home</h4>
-    <div>{{ user_auth()->email }}</div>
+    {{-- <div>{{ user_auth()->email }}</div> --}}
+    <div>{{ Auth::user()->email }}</div>
     <a href="{{ route('auth@logout') }}">Logout</a>
 </body>
 </html>

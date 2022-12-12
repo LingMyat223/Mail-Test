@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 
@@ -29,8 +30,9 @@ class AuthController extends Controller
         $user = User::where('email',$request->email)->first();
 
         if(Hash::check($request->password,$user->password)){
-            session()->put('login',true);
-            session()->put('user_id',$user->id);
+            // session()->put('login',true);
+            // session()->put('user_id',$user->id);
+            Auth::login($user);
             return to_route('page@home')->with('success','successfully logined');
         } else {
             return back()->with('please enter valid password');
@@ -39,9 +41,10 @@ class AuthController extends Controller
 
     //Logout
     public function logout(){
-        session()->forget([
-            'login','user_id'
-        ]);
+        // session()->forget([
+        //     'login','user_id'
+        // ]);
+        Auth::logout();
         return to_route('page@loginPage')->with('successfully logout');
     }
 }

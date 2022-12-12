@@ -25,7 +25,7 @@ Route::controller(PageController::class)->group(function(){
     Route::get('registerPage','registerPage')->name('page@registerPage');
     Route::get('sendOtpPage','sendOtpPage')->name('page@sendOtpPage');
     Route::get('verifyOtpPage/{email}','verifyOtpPage')->name('page@verifyOtpPage');
-    Route::get('home','home')->name('page@home')->middleware('checkLogin');
+    Route::get('home','home')->name('page@home')->middleware('auth');
 });
 
 Route::controller(OtpController::class)->group(function(){

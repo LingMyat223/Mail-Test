@@ -16,9 +16,9 @@ class CheckLoginMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (empty(session('login'))) {
-            return back()->with('err','you are not logined');
-        }
+        // if (empty(session('login'))) {
+        //     return back()->with('err','you are not logined');
+        // }
         return $next($request);
     }
 }
