@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class PageController extends Controller
 {
     //LoginPage
     public function loginPage(){
-        return view('login');
+        return View::make('login');
     }
     //RegisterPage
     public function registerPage(){
@@ -16,7 +17,7 @@ class PageController extends Controller
     }
     //sendOtpPage
     public function sendOtpPage(){
-        return view('sentCode');
+        return View::make('sentCode');
     }
     //verifyOtpPage
     public function verifyOtpPage(){
